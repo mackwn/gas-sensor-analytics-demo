@@ -41,7 +41,8 @@ def merge_dat_files(out_fn):
 
     for k, v in chemical_names.items():
         df.loc[df.Gas_ID == k,'Gas_ID'] = v
-
+        
+    df['Gas_Conc'] = df.Gas_Conc.astype(float)
     df.to_pickle('data/interim/{}'.format(out_fn))
 
 if __name__ == "__main__":
