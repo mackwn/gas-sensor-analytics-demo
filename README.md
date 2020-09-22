@@ -1,7 +1,7 @@
 gas-sensor-analytics-demo
 ==============================
 
-Gas sensor analytics and calibration workflow. Data from UCI Machine Learning Repository at https://archive.ics.uci.edu/ml/datasets/Gas+Sensor+Array+Drift+Dataset+at+Different+Concentrations#
+Anaylyze data from a chemical sensor array responses to different gases at different concentrations. Result is a model to predict identity of the gas and the concentration. Data from UCI Machine Learning Repository at https://archive.ics.uci.edu/ml/datasets/Gas+Sensor+Array+Drift+Dataset+at+Different+Concentrations#
 
 Citations:
 A Vergara, S Vembu, T Ayhan, M Ryan, M Homer, R Huerta. "Chemical gas sensor drift compensation using classifier ensembles." Sensors and Actuators B: Chemical 166 (2012): 320-329.
