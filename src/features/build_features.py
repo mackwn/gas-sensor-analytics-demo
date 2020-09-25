@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import PowerTransformer
 from sklearn.preprocessing import OneHotEncoder
 import pickle
 #from src.helpers import df_to_array
@@ -14,7 +15,9 @@ def encode_categorical(data, output_fn):
 
 
 def scale_data(data, output_fn):
-    scaler = StandardScaler()
+    #scaler = StandardScaler()
+    
+    scaler = PowerTransformer()
     scaler.fit(data)
     X_scaled = scaler.transform(X)
 
