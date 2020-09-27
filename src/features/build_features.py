@@ -5,9 +5,60 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import PowerTransformer
 from sklearn.preprocessing import OneHotEncoder
 import pickle
+from sklearn.impute import KNNImputer
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.base import BaseEstimator, TransformerMixin
+
+class filterUnusualX(BaseEstimator, TransformerMixin):
+    def __init__(self, z_score_max=4):
+        self.z_score_max = z_score_max
+    def fit(self, X, y = None):
+        return self
+    def transform(self, X, y=None):
+        X_ = np.where(abs(X) > self.z_score_max, np.nan, X)
+        return X_
+
 #from src.helpers import df_to_array
-def preprocess_pipeline():
-    pass
+def preprocess_pipeline_reg():
+
+    cat_idx = [129]
+    num_idx = list(range(0,129))
+
+    trans_encode_scale = ColumnTransformer(
+        [
+            ('cat', OneHotEncoder(), cat_idx), ('num', PowerTransformer(), num_idx)
+        ]
+    )
+
+    trans_filter = ColumnTransformer([
+        ('filter', filterUnusualX(), list(range(0,129)))
+        ], remainder='passthrough'
+    )
+
+    # trans_impute = ColumnTransformer(
+    #     [
+    #         ('impute', KNNImputer(), list(range(0,129)))
+    #     ]
+    #     , remainder='passthrough'
+    # )
+
+    pl = Pipeline(steps=[
+        ('scale_encode', trans_encode_scale),
+        ('filter', trans_filter),
+        ('impute', KNNImputer())
+    ])
+
+    return pl
+
+def preprocess_pipeline_clf():
+    pl = Pipeline(steps=[
+        ('scale', PowerTransformer()),
+        ('filter', filterUnusualX(4)),
+        ('impute', KNNImputer())
+    ])
+
+    return pl
 
 def encode_categorical(data, output_fn):
     encoder = OneHotEncoder(sparse=False)
@@ -37,8 +88,16 @@ def reduce_dimensions(data, scaler_fn, output_fn):
 if __name__ == "__main__":
     df = pd.read_pickle('data/processed/train_data.pkl')
     data = df.values
-    X = data[:,3:]
-    X_cat = data[:,1:2]
-    scale_data(X,'scaler')
-    reduce_dimensions(X,'scaler','pca')
-    encode_categorical(X_cat, 'encoder')
+    X_clf = data[:,3:]
+    X_reg = np.concatenate((X_clf,data[:,1:2]), axis=1)
+
+    pl_reg = preprocess_pipeline_reg()
+    pl_clf = preprocess_pipeline_clf()
+
+    pl_reg.fit_transform(X_reg)
+    pl_clf.fit_transform(X_clf)
+
+
+    #scale_data(X,'scaler')
+    #reduce_dimensions(X,'scaler','pca')
+    #encode_categorical(X_cat, 'encoder')
