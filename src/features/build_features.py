@@ -6,6 +6,8 @@ from sklearn.preprocessing import PowerTransformer
 from sklearn.preprocessing import OneHotEncoder
 import pickle
 #from src.helpers import df_to_array
+def preprocess_pipeline():
+    pass
 
 def encode_categorical(data, output_fn):
     encoder = OneHotEncoder(sparse=False)
