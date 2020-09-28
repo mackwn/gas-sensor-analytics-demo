@@ -19,7 +19,7 @@ class filterUnusualX(BaseEstimator, TransformerMixin):
         X_ = np.where(abs(X) > self.z_score_max, np.nan, X)
         return X_
 
-#from src.helpers import df_to_array
+# Pipeline to prepare feature array for regression
 def preprocess_pipeline_reg():
 
     cat_idx = [129]
@@ -51,6 +51,7 @@ def preprocess_pipeline_reg():
 
     return pl
 
+# Pipeline to prepare feature array data for
 def preprocess_pipeline_clf():
     pl = Pipeline(steps=[
         ('scale', PowerTransformer()),
@@ -59,6 +60,22 @@ def preprocess_pipeline_clf():
     ])
 
     return pl
+
+def df_to_arr_clf(df)
+    data = df.values
+    X = data[:,3:]
+    y = data[:,2] 
+    return X, y 
+
+def df_to_arr_reg(df):
+    data = df.values
+    X = np.concatenate((data[:,3:],  data[:,1:2]), axis=1)
+    y = data[:,2] 
+    return X, y 
+
+
+
+
 
 def encode_categorical(data, output_fn):
     encoder = OneHotEncoder(sparse=False)
