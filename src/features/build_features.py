@@ -61,10 +61,10 @@ def preprocess_pipeline_clf():
 
     return pl
 
-def df_to_arr_clf(df)
+def df_to_arr_clf(df):
     data = df.values
     X = data[:,3:]
-    y = data[:,2] 
+    y = data[:,1] 
     return X, y 
 
 def df_to_arr_reg(df):
@@ -72,9 +72,6 @@ def df_to_arr_reg(df):
     X = np.concatenate((data[:,3:],  data[:,1:2]), axis=1)
     y = data[:,2] 
     return X, y 
-
-
-
 
 
 def encode_categorical(data, output_fn):
