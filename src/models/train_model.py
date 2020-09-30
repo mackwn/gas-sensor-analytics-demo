@@ -40,4 +40,4 @@ def train_regression(df, regressor, out_model_fn):
 if __name__ == "__main__":
     df_train = pd.read_pickle('data/processed/train_data.pkl')
     train_classification(df_train, SVC(C=500), 'clf_svc')
-    train_regression(df_train, SVR(C=2000), 'clf_svr')
+    train_regression(df_train, SVR(C=2000), 'reg_svr')
