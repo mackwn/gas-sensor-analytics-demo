@@ -36,13 +36,6 @@ def preprocess_pipeline_reg():
         ], remainder='passthrough'
     )
 
-    # trans_impute = ColumnTransformer(
-    #     [
-    #         ('impute', KNNImputer(), list(range(0,129)))
-    #     ]
-    #     , remainder='passthrough'
-    # )
-
     pl = Pipeline(steps=[
         ('scale_encode', trans_encode_scale),
         ('filter', trans_filter),
@@ -72,32 +65,6 @@ def df_to_arr_reg(df):
     X = np.concatenate((data[:,3:],  data[:,1:2]), axis=1)
     y = data[:,2] 
     return X, y 
-
-
-def encode_categorical(data, output_fn):
-    encoder = OneHotEncoder(sparse=False)
-    encoder.fit(data)
-
-    pickle.dump(encoder,open('models/preprocessing/{}.pkl'.format(output_fn),'wb'))
-
-
-def scale_data(data, output_fn):
-    #scaler = StandardScaler()
-    
-    scaler = PowerTransformer()
-    scaler.fit(data)
-    X_scaled = scaler.transform(X)
-
-    pickle.dump(scaler,open('models/preprocessing/{}.pkl'.format(output_fn),'wb'))
-
-def reduce_dimensions(data, scaler_fn, output_fn):
-    # 56 components selected for 99.9% explained variance - see notebook
-    scaler = pickle.load(open('models/preprocessing/{}.pkl'.format(scaler_fn),'rb'))
-    X_scaled = scaler.transform(data)
-    pca = PCA(56)
-    pca.fit(X_scaled)
-
-    pickle.dump(pca,open('models/preprocessing/{}.pkl'.format(output_fn),'wb'))
 
 if __name__ == "__main__":
     df = pd.read_pickle('data/processed/train_data.pkl')
