@@ -7,7 +7,6 @@ The application downloads the data, processes the data, and trains a robust mode
 
 The justifcation for the preprocessing steps, feature selection, and model selection is contained in the notebooks (see section below for brief summaries).  
 
-<<<<<<< HEAD
 <h2>Getting started</h2>
 
 <ul>
@@ -16,15 +15,6 @@ The justifcation for the preprocessing steps, feature selection, and model selec
 <li>Train the models by running python -m src.models.train_models. Edit train_models as ncessary based on the model building notebooks.  </li>
 <li>Review the performance of the model in notebook 6</li>
 </ul>
-=======
-Getting started
-===============
-
--Create the data set by running python -m src.data.make_dataset (run the file manually to change the default file names).
--Review the data in notebooks 1-5
--Train the models by running python -m src.models.train_models. Edit train_models as ncessary based on the model building notebooks.  
--Review the performance of the model in notebook 6
->>>>>>> 6cbb265d7746f920344d4f06f8792f2d48c6fec8
 
 Citations:
 A Vergara, S Vembu, T Ayhan, M Ryan, M Homer, R Huerta. "Chemical gas sensor drift compensation using classifier ensembles." Sensors and Actuators B: Chemical 166 (2012): 320-329.
