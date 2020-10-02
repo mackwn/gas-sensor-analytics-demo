@@ -1,6 +1,7 @@
 Getting started
 ===============
 
-This is where you describe how to get set up on a clean install, including the
-commands necessary to get the raw data (using the `sync_data_from_s3` command,
-for example), and then how to make the cleaned, final data sets.
+-Create the data set by running python -m src.data.make_dataset
+-Review the data in notebooks 1-5
+-Train the models by running python -m src.models.train_models. Edit train_models as ncessary based on the model building notebooks.  
+-Review the performance of the model in notebook 6
