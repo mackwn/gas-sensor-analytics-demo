@@ -66,10 +66,11 @@ I Rodriguez-Lujan, J Fonollosa, A Vergara, M Homer, R Huerta. "On the calibratio
 <h2>Notebooks</h2>
 <ul>
 <li>1-initial-exploration: Make the dataframe from raw .dat files. Histograms of input features.    Scaling data. </li>
-<li>2-pca-analysis: Data visualization with using PCA to conceptually view trends in the data </li>
-<li>3-explore-model-building-classification: Evaluate classifcation models for predicting the type of gas. </li>
-<li>4-explore-model-building-classification: Evaluate regression models for predicting the concentration of a gas. </li>
-<li>5-evaluate-model: evaluate trained models against the test set.</li> 
+<li>2-build-pipeline: background work for the preprocessing pipeline
+<li>3-pca-visualization: Data visualization with using PCA to conceptually view trends in the data </li>
+<li>4-explore-model-building-classification: Evaluate classifcation models for predicting the type of gas. </li>
+<li>5-explore-model-building-classification: Evaluate regression models for predicting the concentration of a gas. </li>
+<li>6-evaluate-model: evaluate trained models against the test set.</li> 
 </ul>
 
 
